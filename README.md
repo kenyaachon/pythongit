@@ -20,3 +20,9 @@ Goal: was to better understand the inner workings of git by implementing by own 
 - rm
 - show-ref
 - tag
+
+# Using the program
+
+```
+chmod +x pythongit
+```
