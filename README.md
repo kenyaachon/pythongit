@@ -16,7 +16,6 @@ Goal: was to better understand the inner workings of git by implementing by own 
 - ls-tree
 - merge
 - rebase
-- rebase
 - rev-parse
 - rm
 - show-ref
