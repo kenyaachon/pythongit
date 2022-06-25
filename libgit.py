@@ -2,6 +2,7 @@ import argparse
 import configparser
 import os
 import configparser
+from tempfile import TemporaryFile
 
 class GitRepository(object):
     def __init__(self, path):
@@ -11,49 +12,51 @@ class GitRepository(object):
         #Read configuration file in .git/config
         #sthe config file is an INI file
         self.config = configparser.ConfigParser()
-
-        #make a file
-
-    # create dirname(*path) if path is absent
-    def repo_file(self, *path, mkdir=False):
-       pass
-
-    def repo_dir(self, *path, mkdir=False):
-        
-
-        #check if the path is a directory
-
-
-        #check if I need to make a directory
-        pass
-
-    def repo_default_config(self):
-        pass
-
-    #compute path under repo's gitdir
-    def repo_path(self, *path):
-        return os.path.join(self.gitdir, *path)
-
-
-# Create a new repository at path
-def repo_create(path):
-    pass
         
 
 #create an empty Git repository
-def init():
+def init(args):
+    print(args)
     print("hello there")
+
+    #check if the directory exists
+    path = os.path.abspath(".")
+    if (args.path):
+        path = os.path.abspath(args.path)
+        git = os.path.join(path, ".git")
+        if(os.path.exists(git)):
+            print("path exists")
+            print(git)
+            return None
+
+    #make the git directory
+    try:
+        print("making the directory")
+        os.makedirs(os.path.join(path, ".git/objects"))
+        os.makedirs(os.path.join(path, ".git/refs/tags"))
+        os.makedirs(os.path.join(path, ".git/refs/head"))
+        os.makedirs(os.path.join(path, ".git/branches"))
+
+    except FileNotFoundError as err:
+        print(err)
 
 
 def main():
-    
-    parser = argparse.ArgumentParser(description='reimplementating of git system')
-    
-    parser.add_argument("command", nargs='+')
-    args = parser.parse_args()
-    print(args)
 
-    if args.command[0] == 'init': init()
+    parser = argparse.ArgumentParser(description='reimplementating of git system')
+    subparsers = parser.add_subparsers(help='git commands')
+
+    #init
+    parser_init = subparsers.add_parser('init', help='create empty git repository')
+    parser_init.add_argument('--path', help="the path of the desired directory")
+    parser_init.set_defaults(func=init)
+
+    #parse command line and call whatever function was selected
+    args = parser.parse_args()
+    args.func(args)
+
+
+
     
 
 
