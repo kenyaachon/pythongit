@@ -12,34 +12,36 @@ class GitRepository(object):
         #sthe config file is an INI file
         self.config = configparser.ConfigParser()
 
-    def repo_file(self, path, mkdir=False):
-        
-        if self.repo_dir(*path[:-1], mkdir=mkdir):
-            return self.repo_path()
+        #make a file
+
+    # create dirname(*path) if path is absent
+    def repo_file(self, *path, mkdir=False):
+       pass
 
     def repo_dir(self, *path, mkdir=False):
-        path = self.repo_file(*path)
-
+        
 
         #check if the path is a directory
 
 
         #check if I need to make a directory
+        pass
 
     def repo_default_config(self):
         pass
 
+    #compute path under repo's gitdir
     def repo_path(self, *path):
         return os.path.join(self.gitdir, *path)
 
 
+# Create a new repository at path
 def repo_create(path):
     pass
         
 
 #create an empty Git repository
 def init():
-    print("hello")
     print("hello there")
 
 
