@@ -34,11 +34,31 @@ def init(args):
         print("making the directory")
         os.makedirs(os.path.join(path, ".git/objects"))
         os.makedirs(os.path.join(path, ".git/refs/tags"))
-        os.makedirs(os.path.join(path, ".git/refs/head"))
+        os.makedirs(os.path.join(path, ".git/refs/heads"))
         os.makedirs(os.path.join(path, ".git/branches"))
 
     except FileNotFoundError as err:
         print(err)
+
+    # .git/description
+    with open(os.path.join(path, ".git/description"), 'w') as fp:
+        fp.write("Unnamed repository: edit this file 'description' to name the repository.\n")
+
+    # .git/HEAD
+    with open(os.path.join(path, ".git/HEAD"), 'w') as fp:
+        fp.write("ref: refs/heads/masters\n")
+
+    # config file
+    with open(os.path.join(path, ".git/config"), 'w') as fp:
+        config = configparser.ConfigParser()
+        config.add_section('core')
+        config.set('core', 'repositoryformatversion', '0')
+        config.set('core', 'filemode', 'false')
+        config.set('core', 'bare', 'false')
+        config.write(fp)
+
+
+
 
 
 def main():
