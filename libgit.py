@@ -2,7 +2,6 @@ import argparse
 import configparser
 import os
 import configparser
-from tempfile import TemporaryFile
 
 class GitRepository(object):
     def __init__(self, path):
@@ -59,8 +58,8 @@ def init(args):
 
 
 
-
-
+def repo_find(path):
+    return ""
 def main():
 
     parser = argparse.ArgumentParser(description='reimplementating of git system')

@@ -21,7 +21,7 @@ Goal: was to better understand the inner workings of git by implementing by own 
 - show-ref
 - tag
 
-# Using the program
+## Using the program
 
 ```
 chmod +x pythongit
