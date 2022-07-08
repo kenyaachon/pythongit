@@ -59,6 +59,13 @@ def init(args):
 
 
 def repo_find(path):
+    path = os.path.realpath(path)
+    if os.path.isdir(os.path.join(path, ".git")):
+        return os.path.join(path, ".git")
+    else:
+        raise Exception("No git repository found")
+   
+    
     return ""
 def main():
 

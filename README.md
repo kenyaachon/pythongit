@@ -4,6 +4,15 @@ This projects refernceces the article made by [Thibault Polge](https://wyag.thb.
 
 Goal: was to better understand the inner workings of git by implementing by own version using python
 
+- [Features](#features-to-implement)
+- [Usage](#using-the-program)
+- [Commands](#commands)
+  - [init](#init)
+  - [add](#add)
+  - [tag](#tag)
+- [Virtual Environment](#virtual-environment)
+- [Docker Container](#docker-container)
+
 ## Features to Implement
 
 - add
@@ -70,7 +79,7 @@ venv will create a virtual python installation in the env folder
 Before you can start install or using packages in your virtual environment you need to activate it
 
 ```
-source env/bin/activate
+source .venv/bin/activate
 which python
 ```
 
@@ -81,3 +90,14 @@ simply run
 ```
 deactivate
 ```
+
+## Docker Container
+
+To run
+
+```
+$ docker-compose build
+$ docker-compose run pythongit sh
+```
+
+This will open the docker container into the shell program. To keep the docker contain running after running docker-compose, 'tty:true' in the docker-compose.yaml file keeps the container running in the background.
